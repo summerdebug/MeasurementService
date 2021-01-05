@@ -22,12 +22,12 @@ public class MeasurementService {
         SpringApplication.run(MeasurementService.class, args);
     }
 
-    // Fill database with initial test data.
+    // Initiate database
     @Bean
     public CommandLineRunner init(MeasurementRepository measurementRepo, UserRepository userRepo) {
         return args -> {
-            Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name -> {
-                User user = new User(name, name.toLowerCase() + "@domain.com");
+            Stream.of("Andrew", "Kate", "Tom", "John", "Bill").forEach(name -> {
+                User user = new User(name, name.toLowerCase() + "@dummymail.com");
                 userRepo.save(user);
             });
             userRepo.findAll().forEach(System.out::println);
@@ -38,7 +38,7 @@ public class MeasurementService {
             }
             User user = userOptional.get();
 
-            Measurement measurement = new Measurement(user, UtilityType.COLD_WATER, 15, LocalDateTime.now());
+            Measurement measurement = new Measurement(user, UtilityType.WATER, 15, LocalDateTime.now());
             measurementRepo.save(measurement);
         };
     }

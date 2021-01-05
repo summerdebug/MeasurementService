@@ -7,7 +7,6 @@ import static org.springframework.http.HttpStatus.OK;
 
 import com.utilities.monitoring.dto.MeasurementDto;
 import com.utilities.monitoring.model.UtilityType;
-import com.utilities.monitoring.repository.MeasurementRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
@@ -35,7 +34,7 @@ public class MeasurementControllerTest {
     static final String URL = "/api/measurement";
     private static final long USER_ID = 2L;
     private static final int MEASUREMENT_VALUE = 20;
-    public static final UtilityType TYPE = UtilityType.HOT_WATER;
+    public static final UtilityType TYPE = UtilityType.ELECTRICITY;
 
     @Mock
     private MeasurementController measurementController;
