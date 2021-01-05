@@ -1,7 +1,6 @@
 package com.utilities.monitoring.controller;
 
 import com.utilities.monitoring.dto.MeasurementDto;
-import com.utilities.monitoring.exception.UserNotFoundException;
 import com.utilities.monitoring.service.MeasurementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +10,6 @@ import java.util.List;
 
 import static org.springframework.http.ResponseEntity.ok;
 
-// TODO Implement authorization
-// TODO Implement UserController to add and view users
 @RestController
 @RequestMapping("/api/measurement")
 public class MeasurementController {
