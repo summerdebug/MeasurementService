@@ -2,7 +2,7 @@
 Service for collect Utilities measurements - gas, water and electricity.
 
 ## Description
-REST service based on Maven, Java 8, Spring Boot and in-memory database HSQLDB.
+REST service based on Maven, Java 11, Spring Boot and in-memory database HSQLDB.
 There are 2 REST functions:
 - Add a measurement
 - Get the measurements by user id

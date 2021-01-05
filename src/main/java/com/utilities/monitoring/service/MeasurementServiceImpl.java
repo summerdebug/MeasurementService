@@ -34,8 +34,8 @@ public class MeasurementServiceImpl implements MeasurementService {
     public Long save(MeasurementDto dto) {
         Long userId = dto.getUserId();
         Optional<User> userOptional = userRepo.findById(userId);
-        if (!userOptional.isPresent()) {
-            throw new UserNotFoundException("User with id " + userId + " does not exist");
+        if (userOptional.isEmpty()) {
+            throw new UserNotFoundException(userId);
         }
         User user = userOptional.get();
         LocalDateTime timestamp = LocalDateTime.now();
@@ -47,13 +47,16 @@ public class MeasurementServiceImpl implements MeasurementService {
 
     @Override
     public List<MeasurementDto> findByUserId(Long userId) {
+        if (userRepo.findById(userId).isEmpty()) {
+            throw new UserNotFoundException(userId);
+        }
         List<Measurement> measurements = measurementRepo.findByUserId(userId);
-        List<MeasurementDto> result = measurements.stream().map(m ->
-                MeasurementDto.builder().userId(m.getUser().getId())
+        return measurements.stream().map(m ->
+                MeasurementDto.builder()
+                        .userId(m.getUser().getId())
                         .type(m.getType())
                         .value(m.getValue())
                         .date(m.getTimestamp().format(DATE_FORMAT))
                         .build()).collect(Collectors.toList());
-        return result;
     }
 }
